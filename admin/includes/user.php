@@ -51,6 +51,26 @@ class User{
         return $user;
 	}
 
+	public static function verify_user($username,$password){
+		global $database;
+		$user_name = $database->escape_string($username);
+		$pass_word = $database->escape_string($password);
+		//user whose username and password are entered
+		$user_query = "SELECT * FROM users WHERE username='{$user_name}' AND password=$pass_word LIMIT 1";
+		//get the element
+		$user_result_array = self::return_query_result($user_query);
+
+		if(!empty($user_result_array)){
+			$fisrt_element = $user_result_array[0];
+			return $fisrt_element;
+		} else{
+			return false;
+		}
+
+
+
+	}
+
 	private function has_attribute($attribute){
 		$properties = get_object_vars($this);
 		return array_key_exists($attribute, $properties);
@@ -58,3 +78,6 @@ class User{
 };
 
 ?>
+
+
+
