@@ -15,23 +15,26 @@
                           global $database;
 
 
-                          /*
+
+
+                          
                           $user = new User();
-                          $user->username = "example";
-                          $user->first_name = "example";
-                          $user->last_name = "example";
-                          $user->password = "example";
+                          $user->username = "example200";
+                          $user->first_name = "example200";
+                          $user->last_name = "example200";
+                          $user->password = "example200";
 
 
                           $user->save_user();
-                          */
+                          
 
                           /*
-                          $user=User::find_user_by_id(12);
-                          $user->first_name = "1";
+                          $user=User::find_user_by_id(14);
+                          $user->first_name = "10000";
 
                           $user->save_user();
                           */
+                          
                           /*
                           if($user){
                             $user->first_name = "hi";

@@ -2,6 +2,7 @@
 
 class User{
 	protected static $db_table = "users";
+	protected static $db_table_fields = array('username','password','first_name','last_name');
 	public $id;
 	public $username;
 	public $first_name;
@@ -77,9 +78,30 @@ class User{
 		$properties = get_object_vars($this);
 		return array_key_exists($attribute, $properties);
 	}
-
+	//get all the useful properties
 	protected function properties(){
-		return get_object_vars($this);
+		//return get_object_vars($this);
+		$properties = array();
+
+		foreach(self::$db_table_fields as $db_field){
+			if(property_exists($this, $db_field)){
+				$properties[$db_field] = $this->$db_field;
+			}
+		}
+
+		return $properties;
+	}
+	//escape useful properties before they go into database
+	protected function clean_properties(){
+		global $database;
+
+		$properties = $this->properties();
+		$clean_properties = array();
+		foreach($properties as $key=>$value){
+			$clean_properties[$key] = $database->escape_string($value);
+		}
+
+		return $clean_properties;
 	}
 
 	public function save_user(){
@@ -89,14 +111,20 @@ class User{
 	//create user
 	public function create_user(){
 		global $database;
-		$properties = $this->properties();
-
+		//get all the properties of the class
+		$properties = $this->clean_properties();
+		/*
 		$username = $database->escape_string($this->username);
 		$password = $database->escape_string($this->password);
 		$firstname = $database->escape_string($this->first_name);
 		$lastname = $database->escape_string($this->last_name);
+		*/
+		//use implode to pull out array keys and join them automatically
+		/*
+		$insert_query = "INSERT INTO ".self::$db_table."(" . implode(",", array_keys($properties)) . ") VALUES ('{$username}','{$password}','{$firstname}','{$lastname}')";
+		*/
 
-		$insert_query = "INSERT INTO ".self::$db_table."(username, password, first_name, last_name) VALUES ('{$username}','{$password}','{$firstname}','{$lastname}')";
+		$insert_query = "INSERT INTO ".self::$db_table."(" . implode(",", array_keys($properties)) . ") VALUES ('". implode("','", array_values($properties)) ."')";
 
 		$insert_result = $database->query($insert_query);
 
@@ -111,14 +139,24 @@ class User{
 	//update user
 	public function update_user(){
 		global $database;
+		//like in above, to put all the assingment and queries in an 
+		// array
+		$properties = $this->clean_properties();
+		$properties_pairs = array();
 
-		$_id = $this->id;
+		foreach($properties as $key=>$value){
+			$properties_pairs[] = "{$key}='{$value}'";
+		}
+		
+		$id = $this->id;
+		/*
 		$username = $database->escape_string($this->username);
 		$password = $database->escape_string($this->password);
 		$firstname = $database->escape_string($this->first_name);
 		$lastname = $database->escape_string($this->last_name);
+		*/
 
-		$update_query = "UPDATE ".self::$db_table." SET username='{$username}', password='{$password}',first_name='{$firstname}', last_name='{$lastname}' WHERE id=$_id";
+		$update_query = "UPDATE ".self::$db_table." SET " . implode(",", $properties_pairs) . " WHERE id=$id";
 
 		$database->query($update_query);
 
