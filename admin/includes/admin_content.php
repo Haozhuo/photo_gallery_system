@@ -12,33 +12,38 @@
                         </h1>
 
                         <?php  
-                        
-                            /*
-                            $user_result = User::find_all_users();
-
-                            while($row=mysqli_fetch_assoc($user_result)){
-                                echo $row['username'];
-                            }
+                          global $database;
 
 
-                            echo "<br>";*/
+                          /*
+                          $user = new User();
+                          $user->username = "example";
+                          $user->first_name = "example";
+                          $user->last_name = "example";
+                          $user->password = "example";
 
-                            /*
-                            $found_user = User::find_user_by_id(1);
 
-                            $user = User::instantiation($found_user);
+                          $user->save_user();
+                          */
 
-                            echo $user->username;
-                            */
+                          /*
+                          $user=User::find_user_by_id(12);
+                          $user->first_name = "1";
 
-                            $users = User::find_all_users();
-
-                            foreach($users as $user){
-                                echo $user->username . "<br>";
-                            }
-
-                            $one_user = User::find_user_by_id(1);
-                            echo $one_user->username;
+                          $user->save_user();
+                          */
+                          /*
+                          if($user){
+                            $user->first_name = "hi";
+                            $user->update_user();
+                          }
+                          */
+                          /*
+                          $result = mysqli_query($database->connection,"SELECT * FROM users WHERE id=9");
+                          while($row=mysqli_fetch_assoc($result)){
+                            echo $row['username'] . "<br>";
+                            echo $row['first_name'];
+                          }*/
                         
                         ?>
 

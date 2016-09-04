@@ -91,12 +91,13 @@ class Database{
 
 	//escape string function
 	public function escape_string($string){
-		$escaped_string=$this->connection->real_escape_string($this->connection,$string);
+		$escaped_string=$this->connection->real_escape_string($string);
 		return $escaped_string;
 	}
 
 	//get the newly inserted id
 	public function insert_id(){
+		//insert_id is an built-in mysqli function
 		return $this->connection->insert_id;
 	}
 };

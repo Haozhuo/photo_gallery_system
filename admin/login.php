@@ -1,4 +1,6 @@
-<?php require_once("init.php");?>
+<?php require_once("includes/init.php");
+	  require_once("includes/header.php");
+?>
 <?php
 	//if signed in 
 	if($session->is_signed_in()){
@@ -14,13 +16,17 @@
 
 		//If user is found
 		if($is_user_found){
-			$session->login();
+			$session->login($is_user_found);
 			redirect('index.php');
 		}else{
 			$message = "Your message or username is incorrect";
 		}
 
 
+	} else{
+		$username="";
+		$password="";
+		$message="";
 	}
 
 
@@ -30,13 +36,13 @@
 
 <div class="col-md-4 col-md-offset-3">
 
-
+<h4 class="bg-danger"><?php echo $message;?></h4>
 	
 <form id="login-id" action="" method="post">
 	
 <div class="form-group">
 	<label for="username">Username</label>
-	<input type="text" class="form-control" name="username" >
+	<input type="text" class="form-control" name="username" value="<?php echo $username;?>">
 
 </div>
 

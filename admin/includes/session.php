@@ -4,11 +4,13 @@ class Session{
 
 	private $signed_in = false;
 	public $user_id;
+	public $message;
 
 	function __construct(){
 		//started session
 		session_start();
 		$this->set_log_in_data();
+		$this->check_message();
 	}
 
 
@@ -37,7 +39,24 @@ class Session{
 	public function logout(){
 		unset($this->user_id);
 		$this->signed_in = false;
-		seesion_destroy();
+		session_destroy();
+	}
+
+	public function message($msg=""){
+		if(!empty($msg)){
+			$_SESSION['message'] = $msg;
+		} else{
+			return $this->message;
+		}
+	}
+
+	private function check_message(){
+		if(isset($_SESSION['message'])){
+			$this->message = $_SESSION['message'];
+			unset($_SESSION['message']);
+		}else{
+			$this->message = "";
+		}
 	}
 
 };
