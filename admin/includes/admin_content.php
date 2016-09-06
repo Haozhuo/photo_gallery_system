@@ -14,40 +14,8 @@
                         <?php  
                           global $database;
 
+                         echo INCLUDES_PATH;
 
-
-
-                          
-                          $user = new User();
-                          $user->username = "example200";
-                          $user->first_name = "example200";
-                          $user->last_name = "example200";
-                          $user->password = "example200";
-
-
-                          $user->save_user();
-                          
-
-                          /*
-                          $user=User::find_user_by_id(14);
-                          $user->first_name = "10000";
-
-                          $user->save_user();
-                          */
-                          
-                          /*
-                          if($user){
-                            $user->first_name = "hi";
-                            $user->update_user();
-                          }
-                          */
-                          /*
-                          $result = mysqli_query($database->connection,"SELECT * FROM users WHERE id=9");
-                          while($row=mysqli_fetch_assoc($result)){
-                            echo $row['username'] . "<br>";
-                            echo $row['first_name'];
-                          }*/
-                        
                         ?>
 
                         <ol class="breadcrumb">

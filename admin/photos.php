@@ -23,14 +23,42 @@
                             Photos
                             <small>Subheading</small>
                         </h1>
-                        <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-                            </li>
-                            <li class="active">
-                                <i class="fa fa-file"></i> Blank Page
-                            </li>
-                        </ol>
+                        
+                        <div class="col-md-12">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr> 
+                                        <th>Photo</th>
+                                        <th>Id</th>
+                                        <th>File</th>
+                                        <th>Title</th>
+                                        <th>Size</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <?php
+                                            $all_photos = Photo::find_all();
+
+                                            foreach($all_photos as $photo){
+                                        ?>
+
+                                        <td><img width="300" height="100" src="./images/<?php echo $photo->photo_filename ?>"></td>
+                                        <td><?php echo $photo->id;?></td>
+                                        <td><?php echo $photo->photo_filename;?></td>
+                                        <td><?php echo $photo->photo_title;?></td>
+                                        <td><?php echo $photo->photo_size;?></td>
+
+                                        <?php
+                                            }
+                                        ?>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
                     </div>
                 </div>
                 <!-- /.row -->
