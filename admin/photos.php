@@ -1,4 +1,10 @@
 <?php include("includes/header.php"); ?>
+<?php
+if(!$session->is_signed_in()){
+    redirect("login.php");
+}
+?>
+
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -37,23 +43,28 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr>
                                         <?php
                                             $all_photos = Photo::find_all();
 
                                             foreach($all_photos as $photo){
                                         ?>
+                                    <tr>
+                                        <td><img class="admin-photo-thumbnail" src="./images/<?php echo $photo->photo_filename ?>">
+                                            <div class="pictures_link">
+                                                <a href="delete_photo.php?id=<?php echo $photo->id;?>">Delete</a>
+                                                <a href="edit_photo.php?id=<?php echo $photo->id;?>">Edit</a>
+                                                <a href="#">View</a>
+                                            </div>
 
-                                        <td><img width="300" height="100" src="./images/<?php echo $photo->photo_filename ?>"></td>
+                                        </td>
                                         <td><?php echo $photo->id;?></td>
                                         <td><?php echo $photo->photo_filename;?></td>
                                         <td><?php echo $photo->photo_title;?></td>
                                         <td><?php echo $photo->photo_size;?></td>
-
-                                        <?php
-                                            }
-                                        ?>
                                     </tr>
+                                     <?php
+                                            }
+                                     ?>
                                 </tbody>
                             </table>
                         </div>

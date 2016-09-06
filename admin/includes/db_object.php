@@ -6,9 +6,9 @@ class Db_object {
 		return static::return_query_result("SELECT * FROM ".static::$db_table);
 	}
 	//find single user with particular id
-	public static function find_by_id($user_id){
+	public static function find_by_id($id){
 
-		$user_result_array = static::return_query_result("SELECT * FROM ".static::$db_table." WHERE id={$user_id} LIMIT 1");
+		$user_result_array = static::return_query_result("SELECT * FROM ".static::$db_table." WHERE id={$id} LIMIT 1");
 		//if not empty return first element
 		if(!empty($user_result_array)){
 			$fisrt_element = $user_result_array[0];

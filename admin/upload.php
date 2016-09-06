@@ -10,6 +10,8 @@ if(!$session->is_signed_in()){
     if(isset($_POST['submit'])){
         $photo = new Photo();
         $photo->photo_title = $_POST['title'];
+        $photo->photo_description = $_POST['description'];
+        $photo->photo_alternate_text = $_POST['alternate_text'];
         $photo->set_file($_FILES['file_upload']);
 
         
@@ -51,12 +53,25 @@ if(!$session->is_signed_in()){
                             <?php echo $message;?>
                             <form action="" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
+                                    <label for="caption">Title</label>
                                     <input type="text" name="title" class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <input type="file" name="file_upload">
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="cation">Alternate Text</label>
+                                    <input type="text" name="alternate_text" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="caption">Description</label>
+                                    <textarea class="form-control" name="description" id="" cols="30" rows="10">
+                                    </textarea>
+                                </div>
+
 
                                 <input type="submit" name="submit">
 
