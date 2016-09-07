@@ -1,4 +1,10 @@
 <?php include("includes/header.php"); ?>
+<?php
+if(!$session->is_signed_in()){
+    redirect("login.php");
+}
+?>
+
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -23,14 +29,44 @@
                             Comments
                             <small>Subheading</small>
                         </h1>
-                        <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-                            </li>
-                            <li class="active">
-                                <i class="fa fa-file"></i> Blank Page
-                            </li>
-                        </ol>
+                        
+                        <a href="add_comment.php" class="btn-primary">Add Comment</a>
+
+                        <div class="col-md-12">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr> 
+                                        <th>Id</th>
+                                        <th>Author</th>
+                                        <th>Body</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                        <?php
+                                            $all_comments = Comment::find_all();
+
+                                            foreach($all_comments as $comment){
+                                        ?>
+                                    <tr>
+                                        <td><?php echo $comment->id;?></td>
+                                        <td><?php echo $comment->author;?></td>
+                                        
+                                        <td>
+                                            <?php echo $comment->body;?>
+                                             <div class="action_links">
+                                                <a href="delete_comment.php?id=<?php echo $comment->id;?>">Delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                     <?php
+                                            }
+                                     ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+
                     </div>
                 </div>
                 <!-- /.row -->
@@ -41,4 +77,4 @@
         </div>
         <!-- /#page-wrapper -->
 
-  <?php include("includes/footer.php"); ?>
+  <?php include("includes/footer.php"); ?>  <?php include("includes/footer.php"); ?>

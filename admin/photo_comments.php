@@ -5,6 +5,17 @@ if(!$session->is_signed_in()){
 }
 ?>
 
+<?php
+
+if(empty($_GET['id'])){
+    redirect("photos.php");
+}
+
+$comments = Comment::find_comments($_GET['id']);
+
+
+?>
+
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -26,48 +37,36 @@ if(!$session->is_signed_in()){
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Photos
+                            Comments
                             <small>Subheading</small>
                         </h1>
                         
+                        <a href="add_comment.php" class="btn-primary">Add Comment</a>
+
                         <div class="col-md-12">
                             <table class="table table-hover">
                                 <thead>
                                     <tr> 
-                                        <th>Photo</th>
                                         <th>Id</th>
-                                        <th>File</th>
-                                        <th>Title</th>
-                                        <th>Size</th>
-                                        <th>Comment</th>
+                                        <th>Author</th>
+                                        <th>Body</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                         <?php
-                                            $all_photos = Photo::find_all();
 
-                                            foreach($all_photos as $photo){
+                                            foreach($comments as $comment){
                                         ?>
                                     <tr>
-                                        <td><img class="admin-photo-thumbnail" src="./images/<?php echo $photo->photo_filename ?>">
-                                            <div class="action_links">
-                                                <a href="delete_photo.php?id=<?php echo $photo->id;?>">Delete</a>
-                                                <a href="edit_photo.php?id=<?php echo $photo->id;?>">Edit</a>
-                                                <a href="../photo.php?id=<?php echo $photo->id;?>">View</a>
-                                            </div>
-
-                                        </td>
-                                        <td><?php echo $photo->id;?></td>
-                                        <td><?php echo $photo->photo_filename;?></td>
-                                        <td><?php echo $photo->photo_title;?></td>
-                                        <td><?php echo $photo->photo_size;?></td>
-
+                                        <td><?php echo $comment->id;?></td>
+                                        <td><?php echo $comment->author;?></td>
+                                        
                                         <td>
-                                            <?php
-                                                $comments = Comment::find_comments($photo->id);
-                                            ?>
-                                            <a href="photo_comments.php?id=<?php echo $photo->id;?>"><?php echo count($comments);?></a>
+                                            <?php echo $comment->body;?>
+                                             <div class="action_links">
+                                                <a href="delete_comment_photo.php?id=<?php echo $comment->id;?>">Delete</a>
+                                            </div>
                                         </td>
                                     </tr>
                                      <?php
@@ -88,4 +87,4 @@ if(!$session->is_signed_in()){
         </div>
         <!-- /#page-wrapper -->
 
-  <?php include("includes/footer.php"); ?>
+  <?php include("includes/footer.php"); ?>  <?php include("includes/footer.php"); ?>

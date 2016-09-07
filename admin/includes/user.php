@@ -11,7 +11,11 @@ class User extends Db_object{
 	public $user_image;
 	public $upload_directory = "images";
 	public $image_placeholder = "http://placehold.it/200x100";
-	private $salt = "$2a$07$usesomesillystringforsalt$";
+	private $salt = '$2a$07$usesomesillystringforsalt$';
+
+	public $tmp_path;
+
+	public $custom_errors_array = array();
 
 	//BLOW_FISH salt
 	public function crypt_password($password){
@@ -50,6 +54,52 @@ class User extends Db_object{
 		}else{
 			return false;
 		}
+	}
+
+	//$file is user_image
+	public function set_image($file){
+		if(empty($file) || !$file || !is_array($file)){
+			$this->custom_errors_array[] = "This is no uploaded files there";
+			return false;
+		} else{
+			$this->user_image = $file['name'];
+			$this->tmp_path = $file['tmp_name'];
+
+			return true;
+
+		}
+	}
+
+	public function save_user(){
+		
+			//if there is error
+			if(!empty($custom_errors_array))
+				return false;
+			//if any variable is empty
+			if(empty($this->user_image) || empty($this->tmp_path)){
+				$this->custom_errors_array[] = "The file is not available";
+				return false;
+			}
+			//the whole path to the destination
+			$target_path = INCLUDES_PATH . "/" . $this->upload_directory . "/" . $this->user_image;
+
+			if(file_exists($target_path)){
+				$this->custom_errors_array[] = "The file alreay existed.";
+				return false;
+			}
+			//upload the file
+			if(move_uploaded_file($this->tmp_path, "./images/".$this->user_image)){
+				if($this->create()){
+					unset($this->tmp_path);
+					return true;
+				}
+			} else{
+				$this->custom_errors_array[] = "The file folder does not have permission";
+				return false;
+			}
+
+			
+		
 	}
 
 

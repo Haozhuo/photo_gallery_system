@@ -1,7 +1,8 @@
 <?php
 //use late static binding
 class Db_object {
-		//find all the users
+
+	//find all the users
 	public static function find_all(){
 		return static::return_query_result("SELECT * FROM ".static::$db_table);
 	}
