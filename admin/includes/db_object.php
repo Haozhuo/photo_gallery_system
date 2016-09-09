@@ -154,6 +154,20 @@ class Db_object {
 		return (mysqli_affected_rows($database->connection) == 1) ? true : false;
 	}
 
+	//count all
+	public static function count_all(){
+		global $database;
+		$query = "SELECT COUNT(*) FROM " .static::$db_table;
+
+		$result = $database->query($query);
+
+		$row= mysqli_fetch_assoc($result);
+
+		return $row['COUNT(*)'];
+
+		//return $row['num_rows'];
+	}
+
 };
 
 
