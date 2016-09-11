@@ -1,0 +1,1 @@
+This is a personal gallery system that can display, upload and edit images. Because this is for personal use, most viewers cannot access the admin page where admin can view site information, upload files, edit photos and users. For those interested in those fileds, please contact me via email so that I can open up the permission. Please visit http://www.haozhuohuang.com/gallery
