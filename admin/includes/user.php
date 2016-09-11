@@ -96,10 +96,23 @@ class User extends Db_object{
 			} else{
 				$this->custom_errors_array[] = "The file folder does not have permission";
 				return false;
-			}
+			}	
+	}
 
-			
-		
+	public function ajax_save_image($user_image,$user_id){
+		global $database;
+
+		$this->user_image= $user_image;
+		$this->id= $user_id;
+
+		$sql = "UPDATE users ";
+		$sql .= "SET user_image='{$user_image}' ";
+		$sql .= "WHERE id={$user_id}";
+
+
+		$result = $database->query($sql);
+
+		echo  "./images/".$this->user_image;
 	}
 
 

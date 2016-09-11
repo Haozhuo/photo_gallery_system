@@ -90,6 +90,18 @@ class Photo extends Db_object{
 
 	}
 
+	public static function modal_data($photo_id){
+		$photo = Photo::find_by_id($photo_id);
+
+		$output = "<a class='thumbnail' href='#'><img width='100' src='./images/{$photo->photo_filename}'></a>";
+		$output .= "<p>{$photo->photo_filename}</p>";
+		$output .= "<p>{$photo->photo_size}</p>";
+
+		echo $output;
+
+
+	}
+
 };
 
 

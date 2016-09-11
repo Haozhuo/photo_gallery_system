@@ -1,6 +1,9 @@
  <?php
  require_once('init.php');
  ?>
+
+
+
  <div class="container-fluid">
 
                 <!-- Page Heading -->
@@ -12,6 +15,7 @@
                         </h1>
 
                         <div class="row">
+                        <!--
                     <div class="col-lg-3 col-md-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
@@ -20,7 +24,7 @@
                                         <i class="fa fa-users fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge"><?php echo $session->count;?></div>
+                                        <div class="huge"><?php //echo $session->count;?></div>
                                         <div>New Views</div>
                                     </div>
                                 </div>
@@ -34,8 +38,9 @@
                             </a>
                         </div>
                     </div>
+                    -->
 
-                     <div class="col-lg-3 col-md-6">
+                     <div class="col-lg-4 col-md-6">
                         <div class="panel panel-green">
                             <div class="panel-heading">
                                 <div class="row">
@@ -59,7 +64,7 @@
                     </div>
 
 
-                     <div class="col-lg-3 col-md-6">
+                     <div class="col-lg-4 col-md-6">
                         <div class="panel panel-yellow">
                             <div class="panel-heading">
                                 <div class="row">
@@ -85,7 +90,7 @@
                         </div>
                     </div>
 
-                      <div class="col-lg-3 col-md-6">
+                      <div class="col-lg-4 col-md-6">
                         <div class="panel panel-red">
                             <div class="panel-heading">
                                 <div class="row">

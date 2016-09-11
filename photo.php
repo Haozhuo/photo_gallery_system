@@ -47,11 +47,10 @@ $all_comments = Comment::find_comments($photo->id);
                 <h1><?php if(isset($photo->photo_title)) echo $photo->photo_title;?></h1>
 
 
-                <hr>
+            
 
                 <!-- Date/Time -->
-                <p><span class="glyphicon glyphicon-time"></span> Posted on August 24, 2013 at 9:00 PM</p>
-
+               
                 <hr>
 
                 <!-- Preview Image -->

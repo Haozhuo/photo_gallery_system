@@ -9,9 +9,11 @@
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
+            <!--
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu message-dropdown">
+                    
                         <li class="message-preview">
                             <a href="#">
                                 <div class="media">
@@ -65,6 +67,8 @@
                         </li>
                     </ul>
                 </li>
+                -->
+                <!--
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
@@ -92,18 +96,10 @@
                         </li>
                     </ul>
                 </li>
+                -->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php if(isset($_SESSION['username'])) echo $_SESSION['username']; ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li>
                         <li class="divider"></li>
                         <li>
                             <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>

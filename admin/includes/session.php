@@ -43,6 +43,7 @@ class Session{
 			$_SESSION['user_id'] = $user->id;
 			$this->user_id = $_SESSION['user_id'];
 			$this->signed_in = true;
+			$_SESSION['username'] = $user->username;
 		}
 	}
 
@@ -72,5 +73,6 @@ class Session{
 };
 
 $session = new Session();
+$message = $session->message();
 
 ?>

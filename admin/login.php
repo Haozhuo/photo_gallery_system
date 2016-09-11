@@ -17,6 +17,7 @@
 		//If user is found
 		if($is_user_found){
 			$session->login($is_user_found);
+			//$session->login($is_user_found);
 			redirect('index.php');
 		}else{
 			$message = "Your message or username is incorrect";
